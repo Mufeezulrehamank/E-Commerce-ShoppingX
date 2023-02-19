@@ -1,0 +1,50 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-2">
+    <ul class="list-group">
+        <a href="{% url 'electronicsdata'  %}">
+            <li class="list-group-item">Electronics</li>
+        </a>
+        <a href="{% url 'electronics' 'mobile' %}">
+            <li class="list-group-item">Mobils</li>
+        </a>
+        <a href="{% url 'electronics' 'laptop' %}">
+            <li class="list-group-item">Laptops</li>
+        </a>
+        <a href="{% url 'electronics' 'samsung' %}">
+            <li class="list-group-item">Samsung</li>
+        </a>
+        <a href="{% url 'electronics'  'lenovo' %}">
+            <li class="list-group-item">Lenovo</li>
+        </a>
+        <a href="{% url 'electronics' 'less' %}">
+            <li class="list-group-item"><20000</li>
+        </a>
+        <a href="{% url 'electronics' 'greater'  %}">
+            <li class="list-group-item">>20000</li>
+        </a>
+      </ul>
+  </div>
+  <div class="col-sm-9 offset-sm-1  d-flex flex-wrap">
+   {% for item in electronics %}
+   <a href="{% url 'product-detail' item.id %}" class="btn">
+     <div class="item" style="width: 250px;">
+        <div>
+            <img src="{{ item.product_image.url }}" alt="" width="190px">
+        </div>
+        <div>
+            <span class="fw-bold">{{item.title}}</span>
+            <br>
+            <span class="fs-5">Rs. {{item.discount_price}} ID:{{item.id}}</span>
+        </div>       
+     </div>
+   </a>
+   {% endfor %}
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
